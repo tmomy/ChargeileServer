@@ -6,9 +6,10 @@
 """
 
 import uuid
-from app.conf.config import R_SMS
-from lib.utils import logging
 import top
+from lib.utils import logging
+from app.conf import config
+R_SMS = config.R_SMS
 
 
 def send_sms_dy(phone_number,template_param):

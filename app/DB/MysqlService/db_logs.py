@@ -6,14 +6,13 @@
 """
 from sqlalchemy.event import listens_for
 from sqlalchemy.engine import Engine
-from app.conf.config import pool_log_config, sqltime_log_config
-from app.untils.log_builder import build_log
+from app.untils.log_builder import sqltime_logging, pool_logging
 import time
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sqltime_logger = build_log(sqltime_log_config)
-pool_logger = build_log(pool_log_config)
+sqltime_logger = sqltime_logging
+pool_logger = pool_logging
 
 
 @listens_for(Engine, "before_cursor_execute")

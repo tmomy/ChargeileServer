@@ -6,30 +6,29 @@
 """
 from sqlalchemy import create_engine,exc
 from sqlalchemy.pool import QueuePool
-from app.conf.config import mysql_pool_configs
-from app.conf.config import log
-from app.untils.log_builder import build_log
-sys_logging = build_log(log)
+from app.untils.log_builder import sys_logging
+from app.conf import config
+mysql_pool_configs = config.mysql_pool_configs
 
 
 def engine():
     db_pool = None
+    pool_id = 1
     try:
         db_pool = create_engine(mysql_pool_configs['url'], poolclass=QueuePool,
                                 pool_size=mysql_pool_configs['pool_size'],
                                 max_overflow = mysql_pool_configs['max_overflow'],
                                 pool_recycle = mysql_pool_configs['pool_recycle']
                                 )
+        print db_pool.pool.status()
     except exc.OperationalError as e:
-        sys_logging.debug("create pool err:", e)
-    return db_pool
+        print ("create pool err:", e)
+    return db_pool, pool_id
+Engine, pt_id = engine()
 
-# if __name__ == '__main__':
-#     a = engine()
-#     print 11111
-#     print a
-#     print id(a)
-#     print type(a)
+
+
+
 
 
 

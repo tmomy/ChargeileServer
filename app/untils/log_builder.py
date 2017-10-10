@@ -8,7 +8,10 @@ import logging as log
 import sys
 from logging.handlers import SysLogHandler
 from logging.handlers import TimedRotatingFileHandler
-from app.conf import log as sys_conf, pool_log_config, sqltime_log_config
+from app.conf import config
+sys_conf = config.log
+pool_log_config = config.pool_log_config
+sqltime_log_config = config.sqltime_log_config
 
 
 level_dic = {

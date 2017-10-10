@@ -6,5 +6,12 @@
 @contact: dawning7670@gmail.com
 @time: 2017/3/22 16:01
 """
-from config import *
+from ConfigService import (online_config, local_config)
+CONF_MAP = {
+    'online': online_config,
+    'local': local_config
+}
 
+ENVIRONMENT = 'online'
+
+config = CONF_MAP[ENVIRONMENT]

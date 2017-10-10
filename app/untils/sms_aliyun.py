@@ -12,8 +12,8 @@ import json
 from lib.utils import logging
 reload(sys)
 sys.setdefaultencoding('utf8')
-
-from app.conf.config import R_SMS
+from app.conf import config
+R_SMS = config.R_SMS
 
 access_key_id = R_SMS['ACCESS_KEY_ID']
 access_key_secret = R_SMS['ACCESS_KEY_SECRET']
