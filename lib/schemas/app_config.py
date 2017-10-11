@@ -35,6 +35,5 @@ schema_config['email'] = {
 schema_config['web'] = {
     "url_pre": {"type": "string"},
     "ip": {"type": "string", "format": "ipv4"},
-    "port": {"type": "integer", "maximum": 65535, "minimum": 1},
-    "session_timeout": {"type": "integer"}
+    "port": {"type": "integer", "maximum": 65535, "minimum": 1}
 }

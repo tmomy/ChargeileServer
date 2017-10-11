@@ -11,17 +11,17 @@ from flask_cors import CORS
 from lib.flask import app
 from lib.schemas import app_schema_config
 from lib.validator import JValidator
-from app.conf.config import *
+from app.conf import *
 
 
 def check_config():
     validator = JValidator(app_schema_config)
-    for config in validator.schema.keys():
+    for configs in validator.schema.keys():
         from lib.exception import ConfigError
 
-        correct, err = validator.validate(eval(config), config)
+        correct, err = validator.validate(eval(configs), configs)
         if not correct:
-            raise ConfigError(config_name=config, err=err)
+            raise ConfigError(config_name=configs, err=err)
 
 if __name__ == '__main__':
     """

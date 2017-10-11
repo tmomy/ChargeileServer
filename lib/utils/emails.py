@@ -9,7 +9,7 @@ import smtplib
 import traceback
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from app.conf.config import email
+from app.conf import email
 from lib.utils import logging
 
 

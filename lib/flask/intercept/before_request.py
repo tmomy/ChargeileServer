@@ -7,13 +7,14 @@
 @time: 2017/3/31 9:42
 """
 import json as JSON
-from flask import request, abort
-from app.conf.config import web
+from flask import request
 from lib.exception.validator import JSONValidateError
 from lib.flask import app
 from lib.schemas import app_schema_request
 from lib.utils import logging
 from lib.validator import JValidator
+from app.conf import web
+
 
 validator = JValidator(app_schema_request)
 

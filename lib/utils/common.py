@@ -35,7 +35,7 @@ def generate_password(n=12):
     return reduce(lambda a, b: a + b, [__CHARS[x] for x in index])
 
 
-def build_ret(success, msg="", total=0, data=[], code=0):
+def build_ret(success, msg="", total=0, code=0, **data):
     """
     生成请求响应json
     :param success: type(boolean) 成功或失败

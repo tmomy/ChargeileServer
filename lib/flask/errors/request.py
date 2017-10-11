@@ -8,11 +8,14 @@
 """
 import traceback
 import threading
-from app.conf import web
 from lib.flask import app
 from lib.exception.validator import JSONValidateError
 from lib.utils import build_ret
 from lib.utils import logging
+from app.conf import web
+from flask import g
+from sqlalchemy import exc
+
 
 err_id = threading._get_ident()
 
@@ -31,7 +34,7 @@ def internal_error(e):
         response = build_ret(False, msg=e.message, code=err_id)
     else:
         response = build_ret(False, msg="意外错误", code=err_id)
-    logging.error("err_id:{}{}".format(err_id,traceback.format_exc()))
+    logging.error("err_id:{}{}".format(err_id, traceback.format_exc()))
     return response
 
 
@@ -45,7 +48,15 @@ def not_found(e):
 # 处理400页面
 @app.errorhandler(400)
 def bad_request(e):
-    print e
     response = build_ret(False, msg="请求错误", code=err_id)
+    logging.error("err_id:{}{}".format(err_id,traceback.format_exc()))
+    return response
+
+
+@app.errorhandler(exc.SQLAlchemyError)
+def rollback(e):
+    print 22333
+    g.session.rollback()
+    response = build_ret(False, msg=e.message, code=err_id)
     logging.error("err_id:{}{}".format(err_id,traceback.format_exc()))
     return response

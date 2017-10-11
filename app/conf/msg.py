@@ -9,9 +9,10 @@
 
 
 class ERROR(object):
-    def __init__(self, code, msg):
+    def __init__(self, code, msg, err_code=0):
         self.code = code
         self.msg = msg
+        self.err_code = err_code
 
 
 # global params

@@ -12,6 +12,10 @@ def get_params():
     return params
 
 
+def get_mysql_session():
+    return g.session
+
+
 def get_user_info():
     """
     

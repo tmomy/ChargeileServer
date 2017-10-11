@@ -10,8 +10,8 @@ import logging as log
 import sys
 from logging.handlers import SysLogHandler
 from logging.handlers import TimedRotatingFileHandler
+from app.conf import log as log_config
 
-from app.conf.config import log as log_config
 
 level_dic = {
     "debug": log.DEBUG,
